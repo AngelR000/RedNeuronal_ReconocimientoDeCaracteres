@@ -1,16 +1,8 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[3]:
-
+#Developer: Angel Rodriguez Zuñiga
 
 import tensorflow as tf
 import numpy as np 
 from tensorflow import keras
-
-
-# In[117]:
-
 
 ent =[]
 cat = []
@@ -47,26 +39,14 @@ for i in range(123,256):
   ent.append([i])
   cat.append(3)
 
-
-# In[118]:
-
-
 #Convertir el valor a un tipo de dato compatible con la funcion de entrenamiento fit()
 ent = np.array(ent, dtype=np.float32)
 cat = np.array(cat, dtype=np.int32)
-
-
-# In[127]:
-
 
 #Crear modelo y las capas con el numero de neuronas correspondientes, 32 en este caso
 modelo=keras.Sequential()
 modelo.add(keras.layers.Dense(32, input_shape=(1,), activation='relu'))
 modelo.add(keras.layers.Dense(4, activation='softmax'))
-
-
-# In[124]:
-
 
 #Compilar el modelo con el potimizador Adam y una tasa de aprendizaje del 2%
 modelo.compile(
@@ -75,20 +55,12 @@ modelo.compile(
     metrics=['accuracy']
 )
 
-
-# In[125]:
-
-
 #Ejecutar el entrenamiento
 print("Ejecutando Entrenamiento...")
 hist = modelo.fit(ent, cat, epochs=3000, verbose=False)
 print("---¡Entrenamiento Terminado!---")
 precision= modelo.evaluate(ent, cat, verbose=0)
 print(">La precision es: %.2f" % precision[1] + "<")
-
-
-# In[128]:
-
 
 #Realizar prediccion pidiendo dato al usuario (Codigo ASCII)
 print("\n¡Prediccion!")
@@ -110,10 +82,5 @@ for valor in resultados:
       print("Invalido, CARACTER ESPECIAL")
     else:
       print("El valor es invalido o fuera del rango")
-
-
-# In[ ]:
-
-
 
 
